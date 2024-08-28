@@ -1,0 +1,80 @@
+[
+    {
+        "Name" : ["groundnut", "peanut"],
+        "images" : {
+            "Early Leaf Spot" : {"url": 
+                                ["https://pestoscope.com/wp-content/uploads/2020/05/Groundnut_Phyllostica-leaf-spot_2.jpg", 
+                                "https://pestoscope.com/wp-content/uploads/2020/05/Groundnut_Early-leaf-spot_2.jpg",
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRDotJzUt7r_aAUAoez86U9EMgRIHlBmeyPw&s",
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqD2e2-Gt8wzPgnZ0q0ZdJ9nx0_2MaDJ-jpw&s",
+                                "https://eu-images.contentstack.com/v3/assets/bltdd43779342bd9107/blte82865d630fbe2e9/6399879c8472366182596cde/peanutblight_1.jpg?width=1280&auto=webp&quality=95&format=jpg&disable=upscale",
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2TinP8kp6uv6ZUeZlXzY_6hFf09HhIUZhChH-vZZZsAA8Bv27skJWlO0jjRev9vEitqE&usqp=CAU",
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk4bzAYf5XaC7sd0T5YF1U3Wcqjyq1r-8dnQ&s"
+                                ],
+                                "solution" : "To manage these diseases, rotate crops with non-host plants such as cereals, use resistant groundnut varieties, and apply fungicides like chlorothalonil, tebuconazole, or azoxystrobin at the onset of the disease. Improve air circulation by avoiding dense planting and managing weeds, and remove crop residues after harvest to reduce pathogen levels."
+                            
+                            },
+            "Late Leaf Spot": {"url": 
+                                    ["https://www.mindenpictures.com/cache/pcache2/80113836.jpg", 
+                                    "https://th.bing.com/th/id/R.2eb04d81d854918074ef24640e159f66?rik=chTykG3dDaHZ8w&riu=http%3a%2f%2fbarmac.com.au%2fwp-content%2fuploads%2fsites%2f3%2f2016%2f06%2flate-leaf-spot-peanut.jpg&ehk=Vq0oTBuOeVZ51Hgd9j4Ca4wLMn50TYukKA5VJPrTAjc%3d&risl=&pid=ImgRaw&r=0",
+                                    "https://www.mindenpictures.com/cache/pcache/80113836.jpg",
+                                    "https://www.cabidigitallibrary.org/cms/10.1079/cabicompendium.35256/asset/a0809c90-22b5-442c-a1ce-96ae909a67fb/assets/graphic/lls_____.jpg",
+                                    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcontent.ces.ncsu.edu%2Fearly-leaf-spot-of-peanut-1&psig=AOvVaw0a5LpSnf3IyoGE42JXgA1h&ust=1724868369574000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCigcXhlYgDFQAAAAAdAAAAABAo", 
+                                    " https://apps.lucidcentral.org/pppw_v12/images/entities/peanut_leaf_spots_036/img_0898.jpg",
+                                    "https://i.ytimg.com/vi/PbGSdXplnBU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDp1Hp113tCYNk8QMo3wHRDB6Dvdg"],
+                       "solution" : "To manage these diseases, rotate crops with non-host plants such as cereals, use resistant groundnut varieties, and apply fungicides like chlorothalonil, tebuconazole, or azoxystrobin at the onset of the disease. Improve air circulation by avoiding dense planting and managing weeds, and remove crop residues after harvest to reduce pathogen levels."
+                            
+        },
+            
+            "Rosette Virus" : {"url": ["https://plantwiseplusknowledgebank.org/cms/10.1079/pwkb.species.45604/asset/c943c6b1-3af3-428d-945c-e58faa5845f1/assets/graphic/gr-rv%20ccby-sa%20plant%20malawi.jpg", 
+                                        "https://ars.els-cdn.com/content/image/3-s2.0-B9780128143834000104-u10-22-9780128143834.jpg",
+                                        "https://content.peat-cloud.com/w400/groundnut-borer-peanut-1575044476.jpg",
+                                        "https://agricinfo.com.ng/wp-content/uploads/2023/12/rosset.jpeg",
+                                    "https://www.researchgate.net/profile/Lava-Kumar-3/publication/262449769/figure/fig1/AS:296735739006976@1447758721321/Leaf-symptoms-of-chlorotic-rosette-affected-groundnut-plants_Q320.jpg",
+                                "https://www.researchgate.net/publication/262449769/figure/fig1/AS:296735739006976@1447758721321/Leaf-symptoms-of-chlorotic-rosette-affected-groundnut-plants.png",
+                            "http://eagri.org/eagri50/PATH272/lecture09/007_clip_image002.jpg"],
+                    "solution": "Control aphid vectors using insecticides like imidacloprid or acetamiprid, plant resistant varieties, and adjust planting times to avoid peak aphid activity periods. Remove and destroy infected plants promptly to minimize virus spread, and consider intercropping groundnuts with other crops to reduce aphid landing."
+        },
+            
+            "Healthy" : ["https://plantvillage-production-new.s3.amazonaws.com/image/4492/file/default-9d398474245b39d4698d3b0d9cffb18e.jpg",
+                        "https://media.istockphoto.com/id/1165860501/photo/peanut-leaf-isolated-white-background.jpg?s=612x612&w=0&k=20&c=Dj9tnvOKPia_bmu3BtRn4HV1dmYEJDIVPgp0_otX3jE=",
+                        "https://www.researchgate.net/publication/369044246/figure/fig1/AS:11431281125128972@1678214810033/Healthy-groundnut-leaf.jpg",
+                        "https://media.istockphoto.com/id/1432336684/photo/two-peanut-leaves-isolated-on-a-white-background-leaves-of-groundnut.jpg?s=612x612&w=0&k=20&c=ooMHjGkVGstYWtq5tduyxzQJKSfkleSzYn1jEF6Fn60=",
+                    "https://thumbs.dreamstime.com/b/lush-vibrant-peanut-plant-leaves-sunlight-ai-generated-radiant-gleam-hues-basking-exuding-vitality-their-greenery-316171202.jpg",
+                "https://www.shutterstock.com/image-photo/peanut-leaves-isolated-on-white-260nw-1922477009.jpg",
+            "https://www.shutterstock.com/image-photo/peanut-leaf-isolated-on-white-260nw-1107209198.jpg"]
+            
+        }
+        
+    }, 
+
+    {
+        "Name" : ["maize", "corn"],
+        "images" : {
+            "Northern Corn Leaf Blight (NCLB)" : {
+                "url" : [
+                    "https://guide.utcrops.com/wp-content/uploads/2023/06/Northern-Corn-Leaf-Blight-1-e1687461214618-400x154.png",
+                    "https://assets.syngenta.ca/images/pest/125/ca2020_northern_corn_leaf_blight_2.jpg",
+                    "https://agrilife.org/texasrowcrops/files/2021/05/fig-1.png",
+                    "https://apps.lucidcentral.org/pppw_v10/images/entities/maize_northern_leaf_blight_226/thumbs/setomaize2_sml.jpg",
+                    "https://apps.lucidcentral.org/pppw_v10/images/entities/maize_northern_leaf_blight_226/thumbs/setomaize1_sml.jpg",
+                    "https://www.topcropmanager.com/wp-content/uploads/2019/01/a436dbe68b69b1ec8116dc0a6230423a.jpg",
+                    "https://i.ytimg.com/vi/5eEjDsLu1DQ/maxresdefault.jpg"
+                ],
+                "solution":"Use resistant maize varieties, apply fungicides like mancozeb or strobilurins when symptoms are first detected, and practice crop rotation and field sanitation to reduce pathogen inoculum."
+            },
+            "Gray Leaf Spot":{
+                "url" : [
+                    "https://cals.cornell.edu/sites/default/files/styles/three_card_callout/public/2021-02/gray-leaf-spot-on-corn-07282020-chemung-ny-5744-web.jpg?h=bc58accd&itok=Csddl9J0",
+                    "https://www.apsnet.org/edcenter/apsnetfeatures/Article%20Images/strom4.jpg",
+                    "https://extension.umn.edu/sites/extension.umn.edu/files/styles/caption_large/public/grayleafspot3_600px.jpg?itok=tX7lSC8T",
+                    "https://extension.umn.edu/sites/extension.umn.edu/files/styles/caption_large/public/grayleafspot2_600px.jpg?itok=BCXk7t7V",
+                    "https://extension.umn.edu/sites/extension.umn.edu/files/grayleafspot4_600px.jpg",
+                    "https://badgercropdoc.com/files/2014/07/NCLB.jpg",
+                    "https://www.pioneer.com/content/dam/dpagco/pioneer/na/us/en/agronomy/crop_focus/corn/diseases/gls-lesions.jpg"
+                ]
+            }
+        }
+
+    }
+]
