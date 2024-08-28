@@ -47,8 +47,7 @@
         }
         
     }, 
-
-    {
+{
         "Name" : ["maize", "corn"],
         "images" : {
             "Northern Corn Leaf Blight (NCLB)" : {
@@ -73,8 +72,34 @@
                     "https://badgercropdoc.com/files/2014/07/NCLB.jpg",
                     "https://www.pioneer.com/content/dam/dpagco/pioneer/na/us/en/agronomy/crop_focus/corn/diseases/gls-lesions.jpg"
                 ],
-
                 "solution": " Grow resistant hybrids, apply fungicides like strobilurins or triazoles when symptoms are first observed, and ensure good air circulation through proper spacing and field management practices."
+                
+            },
+            "Common Rust": {
+                "url" : [
+                    "https://ohioline.osu.edu/sites/ohioline/files/imce/Plant_Pathology/PLNTPTH-CER-02_Figure_1.png",
+                    "https://agritech.tnau.ac.in/crop_protection/maize_disease_new/Image-1.jpg",
+                    "https://plantwiseplusknowledgebank.org/cms/10.1079/pwkb.20157800281/asset/2fdc14e4-e313-438a-8e85-28e8ee85d904/assets/graphic/common-rust-of-maize-global-2.jpg",
+                    "https://extension.umn.edu/sites/extension.umn.edu/files/commonrust2_600px.jpg",
+                    "https://www.cabidigitallibrary.org/cms/10.1079/cabicompendium.45850/asset/8b0bf8f9-eef7-4dfd-8b0b-d3d31138d305/assets/graphic/pucpol1a.jpg",
+                    "https://www.grainsa.co.za/upload/images/3.-Be-on-the-p-6-8-Foto-2.jpg",
+                    "https://cdnintech.com/media/chapter/79453/1512345123/media/F2.png"
+                ],
+
+                "solution": "Use resistant varieties, monitor for early symptoms, and apply fungicides if necessary, especially in regions where common rust is a recurring problem."
+
+            }, 
+
+            "Healthy": {
+                "url":[
+                    "https://media.istockphoto.com/id/1407403545/photo/corn-leaf-closeup.jpg?s=612x612&w=0&k=20&c=5RgpU9YegU6gthjGowSfJoDBQEYMOnWyWolsJeBRTeI=",
+                    "https://static.vecteezy.com/system/resources/previews/002/930/455/large_2x/green-colored-maize-leaf-on-tree-photo.JPG",
+                    "https://www.researchgate.net/publication/352413716/figure/fig2/AS:1035018579214336@1623779067409/Curled-maize-leaves-as-an-indicator-of-moisture-stress.png",
+                    "https://media.istockphoto.com/id/469731642/photo/cron-green-leaf.jpg?s=612x612&w=0&k=20&c=_34NihY7DqcnCQHSHL2BrC57fUnRcahM3gSxNzPBb3M=",
+                    "https://media.istockphoto.com/id/1395804176/photo/black-woman-hands-touching-a-corn-plant-leaf.jpg?s=612x612&w=0&k=20&c=SrzArV3dr_06OqnCN0B_LhVfUsNcS5Y4a9Vx7vUpdeI=",
+                    "https://i.pinimg.com/originals/0d/c8/72/0dc872703025cb52208bea9e04a45d1a.jpg",
+                    "https://previews.123rf.com/images/feelphotoart/feelphotoart1406/feelphotoart140600086/29161842-corn-plant-leaf-on-the-field-green-corn-leaf-maize-leaf.jpg"
+                ]
             }
         }
 
