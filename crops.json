@@ -103,5 +103,61 @@
             }
         }
 
+    },
+
+    {
+        "Name": "wheat",
+        "images" : {
+            "Wheat Rusts" : {
+                "url": [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsmtCCJoiAZYCUzlW4-imz9Ql-gn3j_9gS5w&s",
+                    "https://images-provider.frontiersin.org/api/ipx/w=410&f=webp/https://www.frontiersin.org/files/Articles/540218/fpls-11-00733-HTML/image_m/fpls-11-00733-g001.jpg",
+                    "https://sagrainmag.co.za/wp-content/uploads/2023/08/22.-Foto-1.jpg",
+                    "https://i0.wp.com/businesspost.ng/wp-content/uploads/2017/02/Wheat-rust-disease.jpg?resize=750%2C536&ssl=1",
+                    "https://archive.wheat.org/wp-content/uploads/sites/77/2020/07/wheat-stripe-rust-thomas-lumpkin.jpg",
+                    "https://content.peat-cloud.com/w400/wheat-leaf-rust-wheat-1582559491.jpg",
+                    "https://images.theconversation.com/files/27380/original/23g8kzcc-1373610611.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&fit=clip"
+                ],
+                "solution": "Plant resistant wheat varieties and apply fungicides like propiconazole or tebuconazole when rust is detected. Remove volunteer wheat plants and alternate hosts like barberry to reduce inoculum sources, and practice crop rotation with non-host crops."
+            },
+
+            "Septoria Leaf Blotch" : {
+                "url": [
+                    "https://assets.syngenta.ca/images/pest/125/ca_2022_d_septorialeafblotch.jpg",
+                    "https://www.cropscience.bayer.co.nz/-/media/bcs-inter/ws_newzealand/pests/diseases/septoria-tritici/septoria-tritici_wheat_1.jpg?h=550&w=825&la=en&hash=03DAF24AADF675845734648B69336570",
+                    "https://media.sciencephoto.com/c0/52/51/64/c0525164-800px-wm.jpg",
+                    "https://www.researchgate.net/profile/Ewen-Mullins/publication/275061449/figure/fig5/AS:267794088460326@1440858494668/Septoria-tritici-blotch-symptoms-on-the-wheat-cultivar-Riband-and-the-B-distachyon_Q320.jpg",
+                    "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/PublishingImages/Pages/SeptoriaNodorum/MehraMain.jpg",
+                    "https://images.ctfassets.net/l2hapltrg3cz/6dViu7rMOHU2MZpSXw3aHR/959b7c666596df091e902b9c105f9ae9/later-season-infection-_340x204.jpg?fm=webp&w=640&q=85",
+                    "https://images.ctfassets.net/l2hapltrg3cz/7gZWXIBbEUf9JQ48urfJoq/64a3b0a8fa366352cfd3dc4383b39634/close-up-of-typical-lesion-with-black-pycndidia_340x204.jpg?fm=webp&w=384&q=85"
+                ],
+
+                "solution": "Use resistant wheat varieties and apply fungicides such as chlorothalonil when symptoms appear. Practice crop rotation and remove infected plant debris to reduce pathogen inoculum in the field"
+            },
+            "Fusarium Head Blight": {
+                "url" : [
+                    "https://live.staticflickr.com/4036/5167136558_ea7e41fdfc_b.jpg",
+                    "https://www.koppert.com/content/_processed_/c/3/csm_Tilletia_controversa_3_commonwheat_CopyrightMaryBurrows_MontanaSateUniversity_98050ecc39.jpg",
+                    "https://news.ca.uky.edu/sites/news.ca.uky.edu/files/images/fhbhi_0.jpg",
+                    "https://www.lsuagcenter.com/~/media/system/c/3/6/b/c36b9fae47bfe1da30f8854999d9adb4/padgett%20bleached%20heads2jpg.jpg?h=1749&la=en&w=2448",
+                    "https://goodineverygrain.ca/wp-content/uploads/2016/06/Fusarium-1024x538.jpg",
+                    "https://static.grainews.ca/wp-content/uploads/2014/09/les-henry-fusarium-e1413909592774.jpg",
+                    "https://live.staticflickr.com/4090/5167125156_e3c701beab_z.jpg"
+
+                ], 
+                "solution" : "Use resistant wheat varieties and apply fungicides such as chlorothalonil when symptoms appear. Practice crop rotation and remove infected plant debris to reduce pathogen inoculum in the field."
+            },
+
+            "Healthy":[
+                "https://www.researchgate.net/profile/Mamoon-Rashid-7/publication/339400319/figure/fig1/AS:860911308906496@1582268659038/Sample-Image-of-Wheat-Plant-Leaf_Q320.jpg",
+                "https://ipcm.webhosting.cals.wisc.edu/wp-content/uploads/sites/54/2016/05/Feekes-576x1024.jpg",
+                "https://www.shutterstock.com/image-photo/close-young-green-wheat-agricultural-260nw-1313659427.jpg",
+                "https://www.uswheat.org/wp-content/uploads/2021/07/SD-Wheat-JUN19-Header-Photo.png",
+                "https://w0.peakpx.com/wallpaper/788/251/HD-wallpaper-wheat-crop-green-nature-view-thumbnail.jpg",
+                "https://png.pngtree.com/thumb_back/fw800/background/20230810/pngtree-field-of-green-wheat-crop-of-wheat-brown-grain-crop-with-image_13016103.jpg",
+                "https://c4.wallpaperflare.com/wallpaper/902/469/204/nature-summer-wallpaper-preview.jpg"
+            ]
+        }
+
     }
 ]
