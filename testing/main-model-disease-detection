@@ -1,0 +1,100 @@
+import pandas as pd
+import requests
+from PIL import Image
+from io import BytesIO
+import numpy as np
+import tensorflow as tf
+from sklearn.preprocessing import LabelEncoder
+from tensorflow.keras.utils import to_categorical
+from sklearn.model_selection import train_test_split
+
+# Load the CSV file
+csv_file_path =  r'C:\Users\Pragyan Pant\OneDrive\Desktop\ML Projects\FasaL (agriculture)\crop_diseases_full.csv'
+data_df = pd.read_csv(csv_file_path)
+
+# Extracting images and labels from the CSV
+image_urls = data_df['disease_images'].tolist()  # Using 'disease_images' column for URLs
+labels = data_df['disease_name'].tolist()  # Using 'disease_name' column for labels
+
+
+# Adding healthy plant images
+healthy_images = data_df['healthy_images'].tolist()
+for url in healthy_images:
+    if isinstance(url, str) and url.strip():  # Check if URL is a string and not empty
+        image_urls.append(url)
+        labels.append("Healthy")
+
+def preprocess_image(image_url):
+    try:
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            img = Image.open(BytesIO(response.content)).resize((224, 224))
+            img_array = np.array(img) / 255.0
+            return img_array
+        else:
+            print(f"Invalid URL encountered; skipping: {image_url}")
+            return None
+    except Exception as e:
+        print(f"Error processing {image_url}: {str(e)}")
+        return None
+
+# Preprocess images and create the dataset
+X = []
+y = []
+for url, label in zip(image_urls, labels):
+    img_array = preprocess_image(url)
+    if img_array is not None:
+        X.append(img_array)
+        y.append(label)
+
+X = np.array(X)
+y = np.array(y)
+
+# Encode labels
+label_encoder = LabelEncoder()
+y_encoded = label_encoder.fit_transform(y)
+
+# Convert to one-hot encoding
+y_categorical = to_categorical(y_encoded)
+
+# Ensure X and y have the same number of samples
+assert len(X) == len(y_categorical), "X and y_categorical must have the same number of samples"
+
+# Split into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y_categorical, test_size=0.2, random_state=42)
+
+# Define and compile the model
+model = tf.keras.Sequential([
+    tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(224, 224, 3)),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.3),
+    tf.keras.layers.Dense(len(label_encoder.classes_), activation='softmax')
+])
+
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10)
+
+# Example: Predict for a new image
+def predict_disease(image_url):
+    img = preprocess_image(image_url)
+    if img is None:
+        return "Error: Image could not be processed"
+    img = np.expand_dims(img, axis=0)  # Add batch dimension
+    try:
+        prediction = model.predict(img)
+        predicted_label = label_encoder.inverse_transform([np.argmax(prediction)])
+        return predicted_label[0]
+    except Exception as e:
+        return f"Error during prediction: {e}"
+
+# Farmer's input
+crop_name = "maize"
+image_url = "https://eu-images.contentstack.com/v3/assets/bltdd43779342bd9107/blt6d3ab493f6f88aaf/63f7c912708b105864483e57/0227T-3458-1800x1012.jpg?width=1280&auto=webp&quality=95&format=jpg&disable=upscale"  # Replace with a valid image URL
+
+# Prediction
+predicted_disease = predict_disease(image_url)
+print(f"The predicted disease is: {predicted_disease}")
