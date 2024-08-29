@@ -1,0 +1,122 @@
+import json
+import requests
+from PIL import Image
+from io import BytesIO
+import numpy as np
+import tensorflow as tf
+from sklearn.preprocessing import LabelEncoder
+from tensorflow.keras.utils import to_categorical
+from sklearn.model_selection import train_test_split
+
+# Load JSON data from a file
+with open(r'C:\Users\Pragyan Pant\OneDrive\Desktop\ML Projects\FasaL (agriculture)\data.json', 'r') as f:
+    data = json.load(f)
+
+# Extracting images and labels from JSON
+crop_data = data[0]  # Assuming the first item is the relevant crop data
+diseases = crop_data.get('images', {})
+
+image_urls = []
+labels = []
+
+# Function to validate URL
+def is_valid_url(url):
+    try:
+        response = requests.head(url, allow_redirects=True)
+        return response.status_code == 200
+    except Exception:
+        return False
+
+# Loop through each disease and its images
+for disease, details in diseases.items():
+    if isinstance(details, dict) and 'url' in details:
+        for url in details['url']:
+            if url.strip() and is_valid_url(url):  # Validate and check URL
+                image_urls.append(url)
+                labels.append(disease)
+            else:
+                print(f"Invalid URL encountered; skipping: {url}")
+    else:
+        print(f"Unexpected structure for {disease}: {details}")
+
+# Adding healthy plant images
+healthy_images = crop_data.get('Healthy', [])
+for url in healthy_images:
+    if url.strip() and is_valid_url(url):  # Validate and check URL
+        image_urls.append(url)
+        labels.append("Healthy")
+
+def preprocess_image(image_url):
+    try:
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            img = Image.open(BytesIO(response.content)).resize((224, 224))
+            img_array = np.array(img) / 255.0
+            return img_array
+        else:
+            print(f"Invalid URL encountered; skipping: {image_url}")
+            return None
+    except Exception as e:
+        print(f"Error processing {image_url}: {str(e)}")
+        return None
+
+# Preprocess images and create the dataset
+X = []
+y = []
+for url, label in zip(image_urls, labels):
+    img_array = preprocess_image(url)
+    if img_array is not None:
+        X.append(img_array)
+        y.append(label)
+
+X = np.array(X)
+y = np.array(y)
+
+# Encode labels
+label_encoder = LabelEncoder()
+y_encoded = label_encoder.fit_transform(y)
+
+# Convert to one-hot encoding
+y_categorical = to_categorical(y_encoded)
+
+# Ensure X and y have the same number of samples
+assert len(X) == len(y_categorical), "X and y_categorical must have the same number of samples"
+
+# Split into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y_categorical, test_size=0.2, random_state=42)
+
+# compilation of model
+model = tf.keras.Sequential([
+    tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(224, 224, 3)),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
+    tf.keras.layers.MaxPooling2D((2, 2)),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dropout(0.3),
+    tf.keras.layers.Dense(len(label_encoder.classes_), activation='softmax')
+])
+
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10)
+
+# Predict
+def predict_disease(image_url):
+    img = preprocess_image(image_url)
+    if img is None:
+        return "Error: Image could not be processed"
+    img = np.expand_dims(img, axis=0)  # Add batch dimension
+    try:
+        prediction = model.predict(img)
+        predicted_label = label_encoder.inverse_transform([np.argmax(prediction)])
+        return predicted_label[0]
+    except Exception as e:
+        return f"Error during prediction: {e}"
+
+# Farmer's input
+crop_name = "Groundnut"
+image_url = "https://naads.or.ug/wp-content/uploads/2020/10/disease.jpg"  # Replace with a valid image URL
+
+# Prediction
+predicted_disease = predict_disease(image_url)
+print(f"The predicted disease is: {predicted_disease}")
