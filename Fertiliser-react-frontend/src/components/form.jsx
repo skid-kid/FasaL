@@ -55,7 +55,7 @@ export function Form() {
     };
 
     const fetchWeatherData = async (city) => {
-        const apiKey = ''; // Your API key
+        const apiKey = '';
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         try {
             const response = await axios.get(url);
@@ -143,7 +143,7 @@ export function Form() {
                 </select>
                 <br />
             </div>
-            {Object.keys(formData).filter(key => key !== 'State' && key !== 'City').map(key => (
+            {Object.keys(formData).filter(key => key !== 'State' && key !== 'City' && key!='Soil_Type' && key!='Crop_Type').map(key => (
                 <div key={key} style={{ marginBottom: '7px' }}>
                     <input
                         style={{ padding: 10, margin: 2, borderRadius: 3 }}
