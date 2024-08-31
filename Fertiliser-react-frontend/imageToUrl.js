@@ -1,38 +1,58 @@
-const axios = require('axios');
-const fs = require('fs');
+const puppeteer = require('puppeteer');
+const path = require('path');
 
-async function uploadImageToImgbb(apiKey, imagePath, expiration = null) {
-    const url = 'https://api.imgbb.com/1/upload';
+async function uploadImageWithPuppeteer(imagePath) {
+    // Launch a new browser instance in fully headless mode
+    const browser = await puppeteer.launch({
+        headless: 'new', // 'new' ensures the latest headless mode
+        executablePath: puppeteer.executablePath(), // Use Puppeteer's bundled Chromium
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--hide-scrollbars',
+            '--mute-audio',
+        ], // Additional args to prevent any visible UI
+    });
 
-    // Read the image file as a base64 encoded string
-    const imageFile = fs.readFileSync(imagePath, { encoding: 'base64' });
-
-    const formData = new URLSearchParams();
-    formData.append('key', apiKey);
-    formData.append('image', imageFile);
-
-    if (expiration) {
-        formData.append('expiration', expiration);
-    }
+    const page = await browser.newPage();
 
     try {
-        const response = await axios.post(url, formData);
-        const jsonResponse = response.data;
+        // Navigate to the image uploader website
+        await page.goto('https://img.doerig.dev/');
 
-        if (jsonResponse.success) {
-            return jsonResponse.data.url;
-        } else {
-            return `Error: ${jsonResponse.status} - ${jsonResponse.error.message}`;
-        }
+        // Wait for the file input element to be present in the DOM
+        const fileInputSelector = 'input[type="file"][name="image"]';
+        await page.waitForSelector(fileInputSelector);
+
+        // Upload the file using the input file element
+        const fileInput = await page.$(fileInputSelector);
+        await fileInput.uploadFile(imagePath);
+
+        // Wait for the upload button to be visible and then click it
+        const uploadButtonSelector = 'button.inline-flex.justify-center.px-4.py-2'; // Adjust if needed
+        await page.waitForSelector(uploadButtonSelector, { visible: true });
+        await page.click(uploadButtonSelector);
+
+        // Wait for the result URL to appear on the page
+        await page.waitForSelector('a[href^="https://i.imgur.com"]', { visible: true });
+
+        // Scrape the image URL
+        const imageUrl = await page.$eval('a[href^="https://i.imgur.com"]', el => el.href);
+
+        console.log('Image uploaded successfully. Image URL:', imageUrl);
+
     } catch (error) {
-        return `Request failed: ${error.message}`;
+
+        console.error('Error during the upload process:', error);
+        
+    } finally {
+        // Close the browser
+        await browser.close();
     }
 }
 
 // Example usage
-const apiKey = 'f0977b4a4d2a5b76dac017b43e6bce29';  // Replace with your imgbb API key
-const imagePath = 'D:\\programming\\python\\SIH24\\53148-3840x2160-studio-ghibli-background-image-desktop-4k.jpg';  // Replace with your image path
-
-uploadImageToImgbb(apiKey, imagePath, 600)
-    .then((imageLink) => console.log('Image uploaded:', imageLink))
-    .catch((error) => console.error('Error uploading image:', error));
+const imagePath = path.resolve('OIP.jpeg');  // Use the correct path to your image
+uploadImageWithPuppeteer(imagePath);
