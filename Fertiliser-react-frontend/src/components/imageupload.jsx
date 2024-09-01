@@ -11,6 +11,9 @@ export function Imageupload() {
   const phpage = () => {
     navigate("/ph");
   };
+  const diseasePage = () => {
+    navigate("/diseases");
+  };
   // Start camera when user wants to capture a photo
   const startCamera = async () => {
     try {
@@ -63,7 +66,6 @@ export function Imageupload() {
       if (photoDisplay === null) {
         return console.log("Please Upload image");
       }
-
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dnw85xaq7/image/upload",
         {
@@ -112,6 +114,7 @@ export function Imageupload() {
       )}
       <div>
         <button onClick={phpage}>Ph</button>
+        <button onClick={diseasePage}>Crop Disease Prediction</button>
         <button onClick={saveImage}>Save Image</button>
       </div>
     </div>
