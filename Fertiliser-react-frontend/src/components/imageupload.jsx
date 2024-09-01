@@ -143,7 +143,6 @@ export function Imageupload() {
         onChange={handleFileUpload} 
       />
       <br /><br />
-      <h2> Or Upload a Image link</h2>
       <br></br>
       <input 
         type="text" 
