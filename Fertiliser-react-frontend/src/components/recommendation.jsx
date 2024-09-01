@@ -48,6 +48,7 @@ export function Recommendation() {
 
   return (
     <div className="form-container">
+        <h1>CROP RECOMMENDATION</h1>
       <form onSubmit={handleSubmit} className="flex-row justify-center text-center">
         {Object.keys(formData).map(key => (
           <div  className='bg-black'key={key} style={{ marginBottom: '7px' }}>

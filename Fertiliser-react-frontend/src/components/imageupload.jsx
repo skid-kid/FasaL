@@ -1,13 +1,11 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
-
 export function Imageupload() {
   const [photo, setPhoto] = useState(null);
   const [photoDisplay, setPhotoDisplay] = useState(null);
   const [url, setUrl] = useState("");
   const [crop, setCrop] = useState("");
-  const [predictionResult, setPredictionResult] = useState(null); // New state for prediction result
+  const [predictionResult, setPredictionResult] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
@@ -24,7 +22,6 @@ export function Imageupload() {
     navigate("/recommendation");
   };
 
-  // Start camera when user wants to capture a photo
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -36,7 +33,6 @@ export function Imageupload() {
     }
   };
 
-  // Capture photo from video stream
   const capturePhoto = () => {
     if (canvasRef.current && videoRef.current) {
       const context = canvasRef.current.getContext("2d");
@@ -58,7 +54,6 @@ export function Imageupload() {
     }
   };
 
-  // Handle photo upload from file input
   const handleFileUpload = (event) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -68,12 +63,10 @@ export function Imageupload() {
     }
   };
 
-  // Update crop state based on input
   const handleCropInput = (event) => {
     setCrop(event.target.value);
   };
 
-  // Save image and get URL
   const saveImage = async () => {
     const data = new FormData();
     data.append("file", photoDisplay);
@@ -102,7 +95,6 @@ export function Imageupload() {
     }
   };
 
-  // Fetch prediction result from the server
   const diseasePage = async () => {
     try {
       if (!url || !crop) {
@@ -117,8 +109,16 @@ export function Imageupload() {
     }
   };
 
+  // Helper function to format the predicted disease
+  const formatDiseaseName = (disease) => {
+    if (!disease) return "No disease prediction available";
+    return disease
+      .replace(/_/g, " ")
+      .replace(/^(.)/, (match) => match.toUpperCase());
+  };
+
   return (
-    <div>
+    <div  >
       <h1>Take a Photo or Upload One</h1>
 
       {/* Camera Capture Section */}
@@ -131,8 +131,8 @@ export function Imageupload() {
         height="200"
       ></video>
       <br />
-      <button onClick={startCamera}>Start Camera</button>
-      <button onClick={capturePhoto}>Capture Photo</button>
+      <button style={{padding:10,margin:5}} onClick={startCamera}>Start Camera</button>
+      <button style={{padding:10,margin:5}} onClick={capturePhoto}>Capture Photo</button>
       <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
 
       {/* File Upload Section */}
@@ -145,6 +145,7 @@ export function Imageupload() {
       <br /><br />
       <br></br>
       <input 
+        style={{width:200, height:30}}
         type="text" 
         placeholder="Enter Crop" 
         value={crop} 
@@ -162,16 +163,17 @@ export function Imageupload() {
 
       <div>
         <br />
-        <button onClick={phpage}>Fertiliser</button>
-        <button onClick={async () => { await saveImage(); await diseasePage(); }}>Crop Disease Prediction</button>
-        <button onClick={saveImage}>Save Image</button>
-        <button onClick={Yield}>Crop Yield</button>
-        <button onClick={recommendation}>Crop Recommendation</button>
+        <button style={{padding:10,margin:5}}onClick={phpage}>Fertiliser</button>
+        <button style={{padding:10,margin:5}} onClick={async () => { await saveImage(); await diseasePage(); }}>Crop Disease Prediction</button>
+        <button style={{padding:10,margin:5}} onClick={saveImage}>Save Image</button>
+        <button style={{padding:10,margin:5}} onClick={Yield}>Crop Yield</button>
+        <button style={{padding:10,margin:5}} onClick={recommendation}>Crop Recommendation</button>
       </div>
+
       {predictionResult && (
         <div>
           <h2>Prediction Result</h2>
-          <pre>{JSON.stringify(predictionResult, null, 2)}</pre>
+          <p>{formatDiseaseName(predictionResult.predicted_disease)}</p>
         </div>
       )}
     </div>
