@@ -1,15 +1,19 @@
-//import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Form } from "./components/form";
 import { Imageupload } from "./components/imageupload";
+import {Form1} from "./components/yield";
+import {Recommendation} from "./components/recommendation";
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Imageupload />} />
-        <Route path="/ph" element={<Form />} />
+        <Route path="/fertiliser" element={<Form />} />
         <Route path="/disease" element={<Form />} />
+        <Route path="/yield" element={<Form1/>} />
+        <Route path="/recommendation" element={<Recommendation/>}/>
+
       </Routes>
     </Router>
   );

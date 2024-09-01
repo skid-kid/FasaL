@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start":"Fertiliser-react-frontend start",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -13,7 +14,8 @@
     "axios": "^1.7.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

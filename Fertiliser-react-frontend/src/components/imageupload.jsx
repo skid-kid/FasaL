@@ -1,19 +1,29 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export function Imageupload() {
   const [photo, setPhoto] = useState(null);
   const [photoDisplay, setPhotoDisplay] = useState(null);
   const [url, setUrl] = useState("");
+  const [crop, setCrop] = useState("");
+  const [predictionResult, setPredictionResult] = useState(null); // New state for prediction result
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
+
   const phpage = () => {
-    navigate("/ph");
+    navigate("/fertiliser");
   };
-  const diseasePage = () => {
-    navigate("/diseases");
+
+  const Yield = () => {
+    navigate("/yield");
   };
+
+  const recommendation = () => {
+    navigate("/recommendation");
+  };
+
   // Start camera when user wants to capture a photo
   const startCamera = async () => {
     try {
@@ -40,6 +50,9 @@ export function Imageupload() {
           videoRef.current.videoWidth,
           videoRef.current.videoHeight
         );
+        canvasRef.current.toBlob((blob) => {
+          setPhotoDisplay(blob);
+        });
         setPhoto(canvasRef.current.toDataURL("image/png"));
       }
     }
@@ -55,6 +68,12 @@ export function Imageupload() {
     }
   };
 
+  // Update crop state based on input
+  const handleCropInput = (event) => {
+    setCrop(event.target.value);
+  };
+
+  // Save image and get URL
   const saveImage = async () => {
     const data = new FormData();
     data.append("file", photoDisplay);
@@ -83,6 +102,21 @@ export function Imageupload() {
     }
   };
 
+  // Fetch prediction result from the server
+  const diseasePage = async () => {
+    try {
+      if (!url || !crop) {
+        console.log("Please upload an image and enter crop name");
+        return;
+      }
+      const response = await fetch(`http://10.12.29.91:3000/FasaL/crops/diseases/?url=${encodeURIComponent(url)}&crop=${encodeURIComponent(crop)}`);
+      const data = await response.json();
+      setPredictionResult(data);
+    } catch (error) {
+      console.log("Error fetching disease prediction:", error);
+    }
+  };
+
   return (
     <div>
       <h1>Take a Photo or Upload One</h1>
@@ -103,7 +137,21 @@ export function Imageupload() {
 
       {/* File Upload Section */}
       <h2>Or Upload a Photo</h2>
-      <input type="file" accept="image/*" onChange={handleFileUpload} />
+      <input 
+        type="file" 
+        accept="image/*" 
+        onChange={handleFileUpload} 
+      />
+      <br /><br />
+      <h2> Or Upload a Image link</h2>
+      <br></br>
+      <input 
+        type="text" 
+        placeholder="Enter Crop" 
+        value={crop} 
+        onChange={handleCropInput}
+      />
+      <br /><br />
 
       {/* Display captured or uploaded photo */}
       {photo && (
@@ -112,11 +160,21 @@ export function Imageupload() {
           <img src={photo} alt="Selected" width="300" />
         </div>
       )}
+
       <div>
-        <button onClick={phpage}>Ph</button>
-        <button onClick={diseasePage}>Crop Disease Prediction</button>
+        <br />
+        <button onClick={phpage}>Fertiliser</button>
+        <button onClick={async () => { await saveImage(); await diseasePage(); }}>Crop Disease Prediction</button>
         <button onClick={saveImage}>Save Image</button>
+        <button onClick={Yield}>Crop Yield</button>
+        <button onClick={recommendation}>Crop Recommendation</button>
       </div>
+      {predictionResult && (
+        <div>
+          <h2>Prediction Result</h2>
+          <pre>{JSON.stringify(predictionResult, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }

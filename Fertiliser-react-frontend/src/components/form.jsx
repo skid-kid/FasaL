@@ -14,8 +14,6 @@ export function Form() {
     Humidity: "",
     Temperature: "",
     pH: "",
-    Fertilizer_Amount: "",
-    Fertilizer_Recommendation: "",
   });
   const [prediction, setPrediction] = useState(null);
   const [weatherError, setWeatherError] = useState("");
