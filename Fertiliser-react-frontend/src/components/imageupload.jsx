@@ -1,10 +1,16 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Imageupload() {
   const [photo, setPhoto] = useState(null);
+  const [photoDisplay, setPhotoDisplay] = useState(null);
+  const [url, setUrl] = useState("");
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-
+  const navigate = useNavigate();
+  const phpage = () => {
+    navigate("/ph");
+  };
   // Start camera when user wants to capture a photo
   const startCamera = async () => {
     try {
@@ -42,6 +48,36 @@ export function Imageupload() {
       const file = event.target.files[0];
       const fileUrl = URL.createObjectURL(file);
       setPhoto(fileUrl);
+      setPhotoDisplay(file);
+    }
+  };
+
+  const saveImage = async () => {
+    const data = new FormData();
+    data.append("file", photoDisplay);
+    data.append("api_key", "dgv7rh3CyecK1miNnlBRWwyZjA4");
+    data.append("upload_preset", "FasaLsih");
+    data.append("cloud_name", "dnw85xaq7");
+
+    try {
+      if (photoDisplay === null) {
+        return console.log("Please Upload image");
+      }
+
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dnw85xaq7/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const cloudData = await res.json();
+      setUrl(cloudData.url);
+      console.log(cloudData.url);
+      console.log("Image Upload Successfully");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -74,6 +110,10 @@ export function Imageupload() {
           <img src={photo} alt="Selected" width="300" />
         </div>
       )}
+      <div>
+        <button onClick={phpage}>Ph</button>
+        <button onClick={saveImage}>Save Image</button>
+      </div>
     </div>
   );
 }
