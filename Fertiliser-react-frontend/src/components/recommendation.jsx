@@ -1,7 +1,6 @@
 
 import axios from "axios";
 import { useState } from "react";
-import zod from "zod";
 export function Recommendation() {
   const [formData, setFormData] = useState({
     Nitrogen: '',

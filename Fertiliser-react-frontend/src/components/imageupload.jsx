@@ -118,7 +118,11 @@ export function Imageupload() {
   };
 
   return (
-    <div  >
+    <div className="min-w-full min-h-screen" >
+      <nav className="flex justify-center  text-red-400">
+        <h1 className="text-red-600">Hello World</h1>
+
+      </nav>
       <h1>Take a Photo or Upload One</h1>
 
       {/* Camera Capture Section */}
