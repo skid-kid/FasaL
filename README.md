@@ -50,7 +50,7 @@ To get started with FasaL, follow these steps:
      ```
    - Start the development server:
      ```bash
-     npm start
+     npm run dev
      ```
 
 ## 📧 Contact
