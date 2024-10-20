@@ -50,7 +50,7 @@ To get started with FasaL, follow these steps:
      ```
    - Start the development server:
      ```bash
-     npm start
+     npm run dev
      ```
 
 ## 📧 Contact
@@ -58,8 +58,30 @@ To get started with FasaL, follow these steps:
 For any questions or collaboration inquiries, feel free to reach out to the team via email or LinkedIn.
 
 linkedin.com/in/harshit-dhar/
+
+
+
 linkedin.com/in/pragyan-pant/
+
+
+
+
 linkedin.com/in/shubh-gupta-27918428a/
+
+
+
+
+
 linkedin.com/in/sarthak-arora-ba076724a/
+
+
+
+
+
 linkedin.com/in/srishtisahi/
+
+
+
+
+
 linkedin.com/in/supratim-saha-548399233/ 
