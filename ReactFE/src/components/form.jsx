@@ -1,19 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { Client } from "@gradio/client";
 export function Form() {
   const [formData, setFormData] = useState({
-    State: "",
-    City: "",
+    state: "",
+    city: "",
     N: "",
     P: "",
     K: "",
-    Soil_Type: "",
-    Crop_Type: "",
-    Humidity: "",
-    Temperature: "",
-    pH: "",
+    soil_type: "",
+    crop_type: "",
+    humidity: "",
+    temperature: "",
+    ph: "",
   });
   const [prediction, setPrediction] = useState(null);
   const [weatherError, setWeatherError] = useState("");
@@ -191,8 +191,9 @@ export function Form() {
     getLocationAndFetchWeather();
 
     try {
-      const response = await axios.post("YOUR_DJANGO_URL", formData);
-      setPrediction(response.data.prediction);
+      const client = await Client.connect("Shinichi876/fertilizer_recommendation");
+      const result = await client.predict("/predict", { formData });
+      setPrediction(result.data);
     } catch (error) {
       console.error(
         "Error submitting data:",
@@ -202,6 +203,13 @@ export function Form() {
   };
 
   return (
+    <>
+      <div className="flex flex-col justify-center items-center">
+        <img src="fasal.jpeg " className="h-50 w-80"></img>
+        <br />
+        <h1 className="font-bold text-3xl text-center">Fertilizer Level Recommendation</h1>
+      </div>
+      <br></br>
     <form
       onSubmit={handleSubmit}
       className="flex-row justify-center text-center"
@@ -210,7 +218,7 @@ export function Form() {
         <select
           style={{ padding: 10, margin: 2, borderRadius: 3, width: 200 }}
           name="State"
-          value={formData.State}
+          value={formData.state}
           onChange={handleChange}
         >
           <option value="">Select State</option>
@@ -228,7 +236,7 @@ export function Form() {
           type="text"
           name="City"
           placeholder="City"
-          value={formData.City}
+          value={formData.city}
           onChange={handleChange}
         />
         <br />
@@ -237,7 +245,7 @@ export function Form() {
         <select
           style={{ padding: 10, margin: 2, borderRadius: 3, width: 200 }}
           name="Soil_Type"
-          value={formData.Soil_Type}
+          value={formData.soil_type}
           onChange={handleChange}
         >
           <option value="">Select Soil Type</option>
@@ -253,7 +261,7 @@ export function Form() {
         <select
           style={{ padding: 10, margin: 2, borderRadius: 3, width: 200 }}
           name="Crop_Type"
-          value={formData.Crop_Type}
+          value={formData.crop_type}
           onChange={handleChange}
         >
           <option value="">Select Crop Type</option>
@@ -287,7 +295,14 @@ export function Form() {
           </div>
         ))}
       {weatherError && <p style={{ color: "red" }}>{weatherError}</p>}
-      <button onClick={getLocationAndFetchWeather}>
+        <button onClick={getLocationAndFetchWeather}
+         style={{
+          padding: 15,
+          borderRadius: "5px",
+          margin: 15,
+          backgroundColor: "black",
+          color: "white",
+        }}>
         Use Current Location for Weather Data
       </button>
 
@@ -304,6 +319,7 @@ export function Form() {
         GET FERTILIZER LEVEL RECOMMENDATION
       </button>
       {prediction && <div>Prediction: {prediction}</div>}
-    </form>
+      </form>
+      </>
   );
 }

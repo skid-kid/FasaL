@@ -79,7 +79,7 @@ export default function Home() {
         </section>
       ))}
       <div className="flex justify-center m-14 p-14">
-        <div className="justify-center font-bold text-3xl text-black">
+        <div className="justify-center font-bold text-3xl text-center text-black">
           <h1>LAUNCHING OUR MOBILE APPLICATION SOON!</h1>
           <img src="image.png" alt="mobile" className="w-100 h-100" />
         </div>
