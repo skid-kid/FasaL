@@ -52,77 +52,77 @@ export function Form1() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex-row justify-center text-center">
-            <div style={{ marginBottom: '7px' }}>
-                <select
-                    style={{ padding: 10, margin: 2, borderRadius: 3, width:200,}}
-                    name="State_Name"
-                    value={formData.State_Name}
-                    onChange={handleChange}
-                >
-                    <option value="">Select State</option>
-                    {states.map(state => (
-                        <option key={state} value={state}>{state}</option>
-                    ))} 
-                </select>
-                <br />
-            </div>
-            <div  style={{ marginBottom: '7px' }}>
-                <select
-                    style={{ padding: 10, margin: 2, borderRadius: 3 ,width:200,height:40}}
-                    name="Crop"
-                    value={formData.Crop}
-                    onChange={handleChange}
-                >
-                    <option value="">Select Crop</option>
-                    {crops.map(crop => (
-                        <option key={crop} value={crop}>{crop}</option>
-                    ))}
-                </select>
-                <br />
-            </div>
-            {Object.keys(formData).filter(key => key !== 'State_Name' && key !== 'Crop').map(key => (
-                <div key={key} style={{ marginBottom: '7px' }}>
-                    <input
-                        style={{ padding: 10, margin: 2, borderRadius: 3 }}
-                        type={key === 'Crop_Type' ? "text" : "number"}
-                        name={key}
-                        placeholder={key}
-                        value={formData[key]}
+        <div className="min-h-screen flex flex-col items-center justify-center">
+            <img src="fasal.jpeg" className="h-50 w-80" alt="Logo"/>
+            <h1 className="font-bold text-5xl text-center mt-4">CROP YIELD</h1>
+            <form onSubmit={handleSubmit} className="flex flex-col items-center mt-4">
+                <div>
+                    <select
+                        style={{ padding: 10, margin: 2, borderRadius: 3, width: 200 }}
+                        name="State_Name"
+                        value={formData.State_Name}
                         onChange={handleChange}
-                    />
-                    <br />
+                    >
+                        <option value="">Select State</option>
+                        {states.map(state => (
+                            <option key={state} value={state}>{state}</option>
+                        ))}
+                    </select>
                 </div>
-            ))}
-            <button
-                type="submit"
-                style={{
-                    padding: 15,
-                    borderRadius: "5px",
-                    margin: 15,
-                    backgroundColor: "black",
-                    color: "white"
-                }}
-            >
-                GET CROP YIELD!
-            </button>
-            {prediction !== null && (
-                <div style={{ marginTop: '20px', fontSize:'50px' }}>
-                    <h3>Expected Yield of Crop in Tons: {prediction}</h3>
-                <div style={{ 
-                    marginTop: '20px', 
-                    padding: '20px', 
-                    border: '1px solid black', 
-                    borderRadius: '5px', 
-                    backgroundColor: 'green', 
-                    color: 'white', 
-                    textAlign: 'center' 
-                  }}
+                <div style={{ marginBottom: '7px' }}>
+                    <select
+                        style={{ padding: 10, margin: 2, borderRadius: 3, width: 200, height: 40 }}
+                        name="Crop"
+                        value={formData.Crop}
+                        onChange={handleChange}
+                    >
+                        <option value="">Select Crop</option>
+                        {crops.map(crop => (
+                            <option key={crop} value={crop}>{crop}</option>
+                        ))}
+                    </select>
+                </div>
+                {Object.keys(formData).filter(key => key !== 'State_Name' && key !== 'Crop').map(key => (
+                    <div key={key} style={{ marginBottom: '7px' }}>
+                        <input
+                            style={{ padding: 10, margin: 2, borderRadius: 3 }}
+                            type={key === 'Crop_Type' ? "text" : "number"}
+                            name={key}
+                            placeholder={key}
+                            value={formData[key]}
+                            onChange={handleChange}
+                        />
+                    </div>
+                ))}
+                <button
+                    type="submit"
+                    style={{
+                        padding: 15,
+                        borderRadius: "5px",
+                        margin: 15,
+                        backgroundColor: "black",
+                        color: "white"
+                    }}
                 >
-                    <h3>Expected Crop yield: {prediction}</h3>
-                </div>
-                </div>
-            )}
-        </form>
+                    GET CROP YIELD!
+                </button>
+                {prediction !== null && (
+                    <div style={{ marginTop: '20px', fontSize: '50px' }}>
+                        <h3>Expected Yield of Crop in Tons: {prediction}</h3>
+                        <div style={{ 
+                            marginTop: '20px', 
+                            padding: '20px', 
+                            border: '1px solid black', 
+                            borderRadius: '5px', 
+                            backgroundColor: 'green', 
+                            color: 'white', 
+                            textAlign: 'center' 
+                        }}>
+                            <h3>Expected Crop yield: {prediction}</h3>
+                        </div>
+                    </div>
+                )}
+            </form>
+        </div>
     )
 }

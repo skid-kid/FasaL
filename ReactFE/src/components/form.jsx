@@ -203,7 +203,16 @@ export function Form() {
   };
 
   return (
-    <>
+    <div>
+          <div className=" min-h-screen flex flex-col items-center justify-center">
+      <img src="fasal.jpeg" className="h-50 w-80"></img>
+      <br />
+      <br/>
+      <h1 className="font-bold text-5xl text-center">CROP YIELD</h1>
+      <br/>
+        </div>
+        
+
       <div className="flex flex-col justify-center items-center">
         <img src="fasal.jpeg " className="h-50 w-80"></img>
         <br />
@@ -320,6 +329,6 @@ export function Form() {
       </button>
       {prediction && <div>Prediction: {prediction}</div>}
       </form>
-      </>
+      </div>
   );
 }
