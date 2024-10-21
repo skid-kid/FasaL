@@ -153,7 +153,7 @@ export function Imageupload() {
       {predictionResult && (
         <div>
           <h2 className="text-xl mb-2">Prediction Result</h2>
-          <p className="text-green-700">{predictionResult}</p>
+          <p className="text-green-700 text-3xl">{predictionResult}</p>
         </div>
       )}
     </div>
